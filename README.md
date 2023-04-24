@@ -11,3 +11,4 @@ MCF: Motot da cancela fechando
 Abrindo: Luz indicativa de sistema abrido
 Fechando:Luz indicativa de sistema fechando
 
+projeto realizado na materia de microprocessadores e microcontroladores no semestre 2020/2
