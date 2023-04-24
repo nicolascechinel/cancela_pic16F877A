@@ -1,0 +1,17 @@
+ÀÄCancela1
+   ÃÄMAIN  0/83  Ram=2
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄ@cinit2  (Inline)  Ram=0
+   ³  ÃÄclose  0/17  Ram=0
+   ³  ÃÄstand_by  0/17  Ram=0
+   ³  ÃÄopen  0/19  Ram=0
+   ³  ÃÄstand_by  0/17  Ram=0
+   ³  ÃÄ@delay_ms1  0/21  Ram=1
+   ³  ÀÄclose  0/17  Ram=0
+   ÀÄtrata_ext  0/49  Ram=2
+      ÃÄ@delay_ms1  0/21  Ram=1
+      ÃÄclose  0/17  Ram=0
+      ÃÄstand_by  0/17  Ram=0
+      ÃÄclose  0/17  Ram=0
+      ÃÄstand_by  0/17  Ram=0
+      ÀÄ@delay_ms1  0/21  Ram=1

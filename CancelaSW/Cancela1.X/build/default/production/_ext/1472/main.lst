@@ -1,0 +1,381 @@
+CCS PCM C Compiler, Version 5.101Pd, 1               18-abr-21 23:50
+Compiler operating in Evaluation Mode
+To obtain a fully enabled compiler visit www.ccsinfo.com/products
+
+               Filename:   C:\Users\NICOL\Desktop\Cancela\CancelaSW\Cancela1.X\build\default\production\_ext\1472\main.lst
+
+               ROM used:   253 words (3%)
+                           Largest free fragment is 2048
+               RAM used:   15 (4%) at main() level
+                           18 (5%) worst case
+               Stack used: 3 locations (1 in main + 2 for interrupts)
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   0AA
+0003:  NOP
+0004:  MOVWF  7F
+0005:  SWAPF  03,W
+0006:  CLRF   03
+0007:  MOVWF  21
+0008:  MOVF   0A,W
+0009:  MOVWF  20
+000A:  CLRF   0A
+000B:  MOVF   04,W
+000C:  MOVWF  22
+000D:  MOVF   77,W
+000E:  MOVWF  23
+000F:  MOVF   78,W
+0010:  MOVWF  24
+0011:  MOVF   79,W
+0012:  MOVWF  25
+0013:  MOVF   7A,W
+0014:  MOVWF  26
+0015:  BCF    03.7
+0016:  BCF    03.5
+0017:  BTFSS  0B.4
+0018:  GOTO   01B
+0019:  BTFSC  0B.1
+001A:  GOTO   02C
+001B:  MOVF   22,W
+001C:  MOVWF  04
+001D:  MOVF   23,W
+001E:  MOVWF  77
+001F:  MOVF   24,W
+0020:  MOVWF  78
+0021:  MOVF   25,W
+0022:  MOVWF  79
+0023:  MOVF   26,W
+0024:  MOVWF  7A
+0025:  MOVF   20,W
+0026:  MOVWF  0A
+0027:  SWAPF  21,W
+0028:  MOVWF  03
+0029:  SWAPF  7F,F
+002A:  SWAPF  7F,W
+002B:  RETFIE
+002C:  BCF    0A.3
+002D:  BCF    0A.4
+002E:  GOTO   066
+.................... //******************************************************************************
+.................... //***** Program didatico CANCELA  **********************************************
+.................... //***** Desenvolvido por: Nicolas Cechinel, Victor Camargo ***************************************
+.................... 
+.................... #include <16F877A.h>
+.................... //////////// Standard Header file for the PIC16F877A device ////////////////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... ////        (C) Copyright 1996, 2020 Custom Computer Services          ////
+.................... //// This source code may only be used by licensed users of the CCS C  ////
+.................... //// compiler.  This source code may only be distributed to other      ////
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction ////
+.................... //// or distribution is permitted without written permission.          ////
+.................... //// Derivative programs created using this software in object code    ////
+.................... //// form are not restricted in any way.                               ////
+.................... ///////////////////////////////////////////////////////////////////////////
+.................... #device PIC16F877A
+.................... 
+.................... #list
+.................... 
+.................... 
+.................... #FUSES XT,NOWDT,PUT,NOBROWNOUT,NOLVP,NOCPD,NOWRT
+.................... 
+.................... #use delay(clock=4000000)
+002F:  MOVLW  2C
+0030:  MOVWF  04
+0031:  BCF    03.7
+0032:  MOVF   00,W
+0033:  BTFSC  03.2
+0034:  GOTO   043
+0035:  MOVLW  01
+0036:  MOVWF  78
+0037:  CLRF   77
+0038:  DECFSZ 77,F
+0039:  GOTO   038
+003A:  DECFSZ 78,F
+003B:  GOTO   037
+003C:  MOVLW  4A
+003D:  MOVWF  77
+003E:  DECFSZ 77,F
+003F:  GOTO   03E
+0040:  GOTO   041
+0041:  DECFSZ 00,F
+0042:  GOTO   035
+0043:  RETURN
+.................... 
+.................... void stand_by()
+.................... {
+....................    output_high(PIN_D0); // LED ABRINDO OFF
+*
+0055:  BSF    03.5
+0056:  BCF    08.0
+0057:  BCF    03.5
+0058:  BSF    08.0
+....................    output_high(PIN_D1); // LED FECHANDO OFF
+0059:  BSF    03.5
+005A:  BCF    08.1
+005B:  BCF    03.5
+005C:  BSF    08.1
+....................    output_low(PIN_D2);  // MCA LOW
+005D:  BSF    03.5
+005E:  BCF    08.2
+005F:  BCF    03.5
+0060:  BCF    08.2
+....................    output_low(PIN_D3);  // MCF LOW
+0061:  BSF    03.5
+0062:  BCF    08.3
+0063:  BCF    03.5
+0064:  BCF    08.3
+....................    return;
+0065:  RETURN
+.................... }
+.................... 
+.................... void open()
+.................... {
+....................    output_low(PIN_D0);  // LED ABRINDO ON
+*
+0097:  BSF    03.5
+0098:  BCF    08.0
+0099:  BCF    03.5
+009A:  BCF    08.0
+....................    output_high(PIN_D1); // LED FECHANDO OFF
+009B:  BSF    03.5
+009C:  BCF    08.1
+009D:  BCF    03.5
+009E:  BSF    08.1
+....................    output_high(PIN_D2); // MCA HIGH
+009F:  BSF    03.5
+00A0:  BCF    08.2
+00A1:  BCF    03.5
+00A2:  BSF    08.2
+....................    output_low(PIN_D3);  // MCF LOW
+00A3:  BSF    03.5
+00A4:  BCF    08.3
+00A5:  BCF    03.5
+00A6:  BCF    08.3
+....................    return;
+00A7:  BCF    0A.3
+00A8:  BCF    0A.4
+00A9:  GOTO   0DF (RETURN)
+.................... }
+.................... 
+.................... void close()
+.................... {
+....................    output_high(PIN_D0); // LED ABRINDO OFF
+*
+0044:  BSF    03.5
+0045:  BCF    08.0
+0046:  BCF    03.5
+0047:  BSF    08.0
+....................    output_low(PIN_D1);  // LED FECHANDO ON
+0048:  BSF    03.5
+0049:  BCF    08.1
+004A:  BCF    03.5
+004B:  BCF    08.1
+....................    output_low(PIN_D2);  // MCA LOW
+004C:  BSF    03.5
+004D:  BCF    08.2
+004E:  BCF    03.5
+004F:  BCF    08.2
+....................    output_high(PIN_D3); // MCF HIGH
+0050:  BSF    03.5
+0051:  BCF    08.3
+0052:  BCF    03.5
+0053:  BSF    08.3
+....................    return;
+0054:  RETURN
+.................... }
+.................... 
+.................... 
+.................... #int_ext // Trata interrupcao externa 
+.................... void trata_ext() // acionada pelo sensor ST
+.................... {
+....................    output_high(PIN_D4);  // BUZZER HIGH
+*
+0066:  BSF    03.5
+0067:  BCF    08.4
+0068:  BCF    03.5
+0069:  BSF    08.4
+....................    
+....................    if((input(pin_b1) == 0) && (input(pin_b2) == 0))   // TESTA SE TEM CARRO E A CANCELA ESTA ABERTA
+006A:  BSF    03.5
+006B:  BSF    06.1
+006C:  BCF    03.5
+006D:  BTFSC  06.1
+006E:  GOTO   084
+006F:  BSF    03.5
+0070:  BSF    06.2
+0071:  BCF    03.5
+0072:  BTFSC  06.2
+0073:  GOTO   084
+....................    {
+....................       delay_ms(20000);   // Conta 10 seg
+0074:  MOVLW  50
+0075:  MOVWF  2B
+0076:  MOVLW  FA
+0077:  MOVWF  2C
+0078:  CALL   02F
+0079:  DECFSZ 2B,F
+007A:  GOTO   076
+....................       while (input(pin_b3) == 1) close(); // FECHA CANCELA ATÉ FIM DE CURSO
+007B:  BSF    03.5
+007C:  BSF    06.3
+007D:  BCF    03.5
+007E:  BTFSS  06.3
+007F:  GOTO   082
+0080:  CALL   044
+0081:  GOTO   07B
+....................       stand_by(); // APAGA LEDS E DESLIGA MOTORES
+0082:  CALL   055
+....................    }
+0083:  GOTO   093
+....................    else
+....................    {
+....................       while (input(pin_b3) == 1) close(); // FECHA CANCELA ATÉ FIM DE CURSO
+0084:  BSF    03.5
+0085:  BSF    06.3
+0086:  BCF    03.5
+0087:  BTFSS  06.3
+0088:  GOTO   08B
+0089:  CALL   044
+008A:  GOTO   084
+....................       stand_by(); // APAGA LEDS E DESLIGA MOTORES
+008B:  CALL   055
+....................       delay_ms(20000);   // Conta 10 seg
+008C:  MOVLW  50
+008D:  MOVWF  2B
+008E:  MOVLW  FA
+008F:  MOVWF  2C
+0090:  CALL   02F
+0091:  DECFSZ 2B,F
+0092:  GOTO   08E
+....................    }
+....................    return;
+0093:  BCF    0B.1
+0094:  BCF    0A.3
+0095:  BCF    0A.4
+0096:  GOTO   01B
+.................... }
+.................... 
+.................... void main()
+*
+00AA:  MOVF   03,W
+00AB:  ANDLW  1F
+00AC:  MOVWF  03
+00AD:  BSF    03.5
+00AE:  BSF    1F.0
+00AF:  BSF    1F.1
+00B0:  BSF    1F.2
+00B1:  BCF    1F.3
+00B2:  MOVLW  07
+00B3:  MOVWF  1C
+00B4:  BCF    03.7
+.................... {
+....................    Port_b_pullups(true);    //habilita os resistores internos de pull ups
+00B5:  BCF    01.7
+....................    
+....................    // HABILITA INTERRUPCOES
+....................    enable_interrupts(global | int_ext);
+00B6:  MOVLW  D0
+00B7:  BCF    03.5
+00B8:  IORWF  0B,F
+....................    
+....................    int1 ST, SA, SCA, SCF;  // INPUT SENSORS
+....................    
+....................    while (input(pin_b3) == 1) close(); // INICIA COM CANCELA FECHADA
+00B9:  BSF    03.5
+00BA:  BSF    06.3
+00BB:  BCF    03.5
+00BC:  BTFSS  06.3
+00BD:  GOTO   0C0
+00BE:  CALL   044
+00BF:  GOTO   0B9
+....................    
+....................    while(TRUE)
+....................    {
+....................       stand_by(); // APAGA LEDS E DESLIGA MOTORES
+00C0:  CALL   055
+....................       output_low(PIN_D4);  // BUZZER LOW
+00C1:  BSF    03.5
+00C2:  BCF    08.4
+00C3:  BCF    03.5
+00C4:  BCF    08.4
+....................       
+....................       // Entradas do sistema
+....................       ST = input(pin_b0);  // Sensor trem
+00C5:  BSF    03.5
+00C6:  BSF    06.0
+00C7:  BCF    03.5
+00C8:  BCF    28.0
+00C9:  BTFSC  06.0
+00CA:  BSF    28.0
+....................       SA = input(pin_b1);  // Sensor automovel 
+00CB:  BSF    03.5
+00CC:  BSF    06.1
+00CD:  BCF    03.5
+00CE:  BCF    28.1
+00CF:  BTFSC  06.1
+00D0:  BSF    28.1
+....................       SCA = input(pin_b2); // Sensor de fim de curso cancela aberta
+00D1:  BSF    03.5
+00D2:  BSF    06.2
+00D3:  BCF    03.5
+00D4:  BCF    28.2
+00D5:  BTFSC  06.2
+00D6:  BSF    28.2
+....................       SCF = input(pin_b3); // Sensor de fim de curso cancela fechada
+00D7:  BSF    03.5
+00D8:  BSF    06.3
+00D9:  BCF    03.5
+00DA:  BCF    28.3
+00DB:  BTFSC  06.3
+00DC:  BSF    28.3
+....................       
+....................       if (SA == 0)
+00DD:  BTFSC  28.1
+00DE:  GOTO   0FB
+....................       {
+....................          while (input(pin_b2) == 1) open(); // ABRE CANCELA ATÉ FIM DE CURSO
+00DF:  BSF    03.5
+00E0:  BSF    06.2
+00E1:  BCF    03.5
+00E2:  BTFSS  06.2
+00E3:  GOTO   0E6
+00E4:  GOTO   097
+00E5:  GOTO   0DF
+....................          
+....................          stand_by(); // APAGA LEDS E DESLIGA MOTORES
+00E6:  CALL   055
+....................          
+....................          delay_ms(20000);   // Conta 10 seg
+00E7:  MOVLW  50
+00E8:  MOVWF  29
+00E9:  CLRF   27
+00EA:  BTFSC  0B.7
+00EB:  BSF    27.7
+00EC:  BCF    0B.7
+00ED:  MOVLW  FA
+00EE:  MOVWF  2C
+00EF:  CALL   02F
+00F0:  BTFSC  27.7
+00F1:  BSF    0B.7
+00F2:  DECFSZ 29,F
+00F3:  GOTO   0E9
+....................          
+....................          while (input(pin_b3) == 1) close(); // FECHA CANCELA ATÉ FIM DE CURSO
+00F4:  BSF    03.5
+00F5:  BSF    06.3
+00F6:  BCF    03.5
+00F7:  BTFSS  06.3
+00F8:  GOTO   0FB
+00F9:  CALL   044
+00FA:  GOTO   0F4
+....................       }
+00FB:  GOTO   0C0
+....................    }
+.................... }
+00FC:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F31   XT NOWDT PUT NOBROWNOUT NOLVP NOCPD NOWRT NODEBUG NOPROTECT
